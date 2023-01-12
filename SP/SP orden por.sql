@@ -9,19 +9,19 @@ BEGIN
 			set orderen_equipo = CONCAT('ORDER BY ', ordenpor);
 	END IF;
 	
-	SET query_orden = CONCAT('SELECT * FROM network_inventory.device ', orderen_equipo);
+	SET @query_orden = CONCAT('SELECT * FROM network_inventory.device ', orderen_equipo);
     SELECT query_orden;
     -- ejecutar la consulta
    
-	PREPARE runSQL FROM @query_orden;
+	PREPARE ejecutar FROM @query_orden;
 
-	EXECUTE runSQL; 
+	EXECUTE ejecutar; 
 
-	DEALLOCATE PREPARE runSQL;
+	DEALLOCATE PREPARE ejecutar;
 END
 //
 DELIMITER ;
 
 
 call SP_NETWORK_INVENTORY_ORDER ('DEV_HOST_NAME')
-
+call SP_NETWORK_INVENTORY_ORDER ('DEV_MOD')
